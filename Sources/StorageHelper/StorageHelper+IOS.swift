@@ -5,7 +5,7 @@ import UIKit
  * - Abstract let's you save file via save dialog with the same API for both iOS and Mac
  * - Fixme: ⚠️️ Possibly move to own repo 👈
  */
-final class StorageHelper {}
+public final class StorageHelper {}
 
 extension StorageHelper {
    /**
@@ -17,7 +17,7 @@ extension StorageHelper {
     * ## Examples:
     * StorageHelper.promptSaveFile(fromURL: url, fileName: fileInfo.fileName, view: self)
     */
-   static func promptSaveFile(fromURL: URL, fileName: String, view: UIView) {
+   public static func promptSaveFile(fromURL: URL, fileName: String, view: UIView) {
       let ac = UIActivityViewController(activityItems: [fromURL], applicationActivities: nil)
       ac.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
       guard let vc = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
