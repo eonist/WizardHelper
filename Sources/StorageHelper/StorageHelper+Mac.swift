@@ -7,12 +7,13 @@ final public class StorageHelper {}
 extension StorageHelper {
    /**
     * Save
+    * - Fixme: ⚠️ ️add support for more types
     * - Parameters:
     *   - fileName: The suggested destination file name
     *   - fromURL: the origin URL of the file to save
     */
    public static func promptSaveFile(fromURL: URL, fileName: String) {
-      let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3"], "Save file…", true) // Prompt the file viewer
+      let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3", "json"], "Save file…", true) // Prompt the file viewer
       dialog.directoryURL = URL(fileURLWithPath: String(NSString(string: "~/Desktop/").expandingTildeInPath))
       dialog.nameFieldStringValue = fileName // "test.json etc"
       let respons = dialog.runModal()
