@@ -10,9 +10,8 @@ extension StorageHelper {
     * - Parameters:
     *   - fileName: The suggested destination file name
     *   - fromURL: the origin URL of the file to save
-    *   - view: the origin-view to show savepanel from
     */
-   public static func promptSaveFile(fromURL: URL, fileName: String, view: NSView) {
+   public static func promptSaveFile(fromURL: URL, fileName: String) {
       let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3"], "Save file…", true) // Prompt the file viewer
       dialog.directoryURL = URL(fileURLWithPath: String(NSString(string: "~/Desktop/").expandingTildeInPath))
       dialog.nameFieldStringValue = fileName // "test.json etc"
