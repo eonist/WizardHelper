@@ -1,4 +1,4 @@
-# StorageHelper
+# WizardHelper
 
 ### Todo: 
-- Rename to WizardHelper? 🧙‍♂️
+- Rename xcode proj
