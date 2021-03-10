@@ -5,9 +5,9 @@ import UIKit
  * - Abstract let's you save file via save dialog with the same API for both iOS and Mac
  * - Fixme: ⚠️️ Possibly move to own repo 👈
  */
-public final class StorageHelper {}
+public final class WizardHelper {}
 
-extension StorageHelper {
+extension WizardHelper {
    /**
     * - Fixme: ⚠️️ the bellow requires access to a viewController, so probably move it to ViewController.swift and use event to propogte, or check if there is a method to get cur viewconteoller from the POV of view, or pov of current app state
     * - Parameters:

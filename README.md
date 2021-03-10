@@ -1,4 +1,5 @@
 # WizardHelper
 
-### Todo: 
-- Rename xcode proj
+### Todo:
+- Add github action
+- Add tests

@@ -1,10 +1,10 @@
 #if os(macOS)
 import Cocoa
-final public class StorageHelper {}
+final public class WizardHelper {}
 /**
  * Util
  */
-extension StorageHelper {
+extension WizardHelper {
    /**
     * Save
     * - Fixme: ⚠️ ️add support for more types
@@ -23,7 +23,7 @@ extension StorageHelper {
       }
    }
 }
-extension StorageHelper {
+extension WizardHelper {
    /**
     * - Parameters:
     *   - fromURL: "/path/to/old"

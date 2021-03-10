@@ -2,17 +2,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "StorageHelper",
+    name: "WizardHelper",
     products: [
         .library(
-            name: "StorageHelper",
-            targets: ["StorageHelper"])
+            name: "WizardHelper",
+            targets: ["WizardHelper"])
     ],
     dependencies: [
     ],
     targets: [
        .target(
-            name: "StorageHelper",
+            name: "WizardHelper",
             dependencies: [])
     ]
 )
