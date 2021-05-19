@@ -5,3 +5,9 @@
 ### Todo:
 - Add github action
 - Add tests
+
+
+### Examples:
+```swift
+WizardHelper.promptSaveFile(fromURL: url, fileName: fileInfo.fileName, view: self)
+```
