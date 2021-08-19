@@ -5,6 +5,7 @@
 ### Todo:
 - Add github action
 - Add tests
+- Add example
 
 
 ### Examples:
