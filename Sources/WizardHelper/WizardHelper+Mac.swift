@@ -22,6 +22,19 @@ extension WizardHelper {
          move(from: fromURL, to: toURL)
       }
    }
+   /**
+    * Open
+    * - Note: you have an extension for NSSavePanel in WinExtension: See NSSavePanel.initialize....
+    * ## Examples:
+    * if let filePath = WizardHelper.promptOpenFile() { print(FileParser.content(filePath: filePath)) }
+    */
+   public static func promptOpenFile(fromURL: URL?) -> String? {
+      _ = fromURL // Not implemented yet
+      let myFileDialog: NSOpenPanel = .init() // Open modal panel
+      myFileDialog.runModal()
+      let thePath = myFileDialog.url?.path // Get the path to the file chosen in the NSOpenPanel
+      return thePath // Make sure that a path was chosen
+   }
 }
 extension WizardHelper {
    /**
@@ -61,3 +74,41 @@ extension NSSavePanel {
    }
 }
 #endif
+
+/**
+ * Save
+ */
+//func promptSaveFile(_ payload:String,fileName:String) {
+//   //prompt the file viewer
+//   let dialog:NSSavePanel = NSSavePanel.initialize(["json"], "Import backup", true)
+//   dialog.directoryURL = "~/Desktop/".tildePath.url
+//   dialog.nameFieldStringValue = fileName//"test.json"
+//   let respons = dialog.runModal()
+//
+//   if let url = dialog.url,respons == NSApplication.ModalResponse.OK{/*Make sure that a path was chosen*/
+//      _ = payload.write(filePath:url.path.tildePath)
+//   }
+//}
+///**
+// * Open
+// */
+//func promptOpenFile(_ callBack:(String,String) -> Void) {
+//   //grab the xml
+//
+//   //prompt the file viewer
+//   let dialog:NSOpenPanel = NSOpenPanel()
+//   dialog.directoryURL = "~/Desktop/".tildePath.url
+//   dialog.title = "Export backup"
+//   let respons = dialog.runModal()
+//   //let thePath:String? = dialog.url?.path /*Get the path to the file chosen in the NSOpenPanel*/
+//
+//   //TODO: use two guards on the bellow instead
+//
+//   if let url = dialog.url,respons == NSApplication.ModalResponse.OK{/*Make sure that a path was chosen*/
+//      if let str = url.path.tildePath.content{
+//         let fileName:String = FilePathParser.fileName(url)
+//         Swift.print("fileName:  \(fileName)")
+//         callBack(str,fileName)
+//      }
+//   }
+//}

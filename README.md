@@ -2,13 +2,12 @@
 
 # WizardHelper
 
-### Todo:
-- Add github action
-- Add tests
-- Add example
-- Move to common/hybrid
-
 ### Examples:
 ```swift
 WizardHelper.promptSaveFile(fromURL: url, fileName: fileInfo.fileName, view: self)
+WizardHelper.promptOpenFile(view: self)
 ```
+
+### Todo:
+- Add github action
+- Add tests
