@@ -8,7 +8,6 @@
 - Add example
 - Move to common/hybrid
 
-
 ### Examples:
 ```swift
 WizardHelper.promptSaveFile(fromURL: url, fileName: fileInfo.fileName, view: self)
