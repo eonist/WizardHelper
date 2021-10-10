@@ -30,6 +30,8 @@ extension WizardHelper {
     * Open file
     * - Note: ref: https://stackoverflow.com/a/48851508/5389500
     * - Note: iOS 14: https://stackoverflow.com/a/42370660/5389500
+    * - Note: apple docs: https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller and https://developer.apple.com/documentation/uikit/view_controllers/adding_a_document_browser_to_your_app/presenting_selected_documents
+    * - Note: all files: "public.data"
     * - Fixme: ⚠️️ Add the UTType code, it's iOS 14 only
     */
    public static func promptOpenFile(view: UIView) -> [URL] {
@@ -37,6 +39,8 @@ extension WizardHelper {
       let controller = OpenFileVC(documentTypes: types, in: .import) // choose your desired documents the user is allowed to select, choose your desired UIDocumentPickerMode
       controller.delegate = controller // let documentPickerController = UIDocumentPickerViewController(forOpeningContentTypes: types)  //      let types = UTType.types(tag: "json", tagClass: UTTagClass.filenameExtension, conformingTo: nil)
 //      controller.modalPresentationStyle = .formSheet
+//      controller.allowsMultipleSelection = false
+//      controller.shouldShowFileExtensions = true
       guard let vc = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
       vc.present(controller, animated: true)
       return controller.urls

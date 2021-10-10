@@ -28,8 +28,8 @@ extension WizardHelper {
     * ## Examples:
     * if let filePath = WizardHelper.promptOpenFile() { print(FileParser.content(filePath: filePath)) }
     */
-   public static func promptOpenFile(fromURL: URL?) -> String? {
-      _ = fromURL // Not implemented yet
+   public static func promptOpenFile(/*fromURL: URL? = nil*/) -> String? {
+      /*_ = fromURL*/ // Not implemented yet
       let myFileDialog: NSOpenPanel = .init() // Open modal panel
       myFileDialog.runModal()
       let thePath = myFileDialog.url?.path // Get the path to the file chosen in the NSOpenPanel
