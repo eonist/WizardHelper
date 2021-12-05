@@ -7,7 +7,7 @@ final public class WizardHelper {}
 extension WizardHelper {
    /**
     * Save
-    * - Fixme: ⚠️ ️add support for more types
+    * - Fixme: ⚠️add support for more types
     * - Parameters:
     *   - fileName: The suggested destination file name
     *   - fromURL: the origin URL of the file to save
@@ -28,8 +28,7 @@ extension WizardHelper {
     * ## Examples:
     * if let filePath = WizardHelper.promptOpenFile() { print(FileParser.content(filePath: filePath)) }
     */
-   public static func promptOpenFile(/*fromURL: URL? = nil*/) -> String? {
-      /*_ = fromURL*/ // Not implemented yet
+   public static func promptOpenFile() -> String? {
       let myFileDialog: NSOpenPanel = .init() // Open modal panel
       myFileDialog.runModal()
       let thePath = myFileDialog.url?.path // Get the path to the file chosen in the NSOpenPanel

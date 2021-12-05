@@ -5,7 +5,6 @@ import UniformTypeIdentifiers
 /**
  * Crossplatform-save-file-wizard for iOS and macOS
  * - Abstract let's you save file via save dialog with the same API for both iOS and Mac
- * - Fixme: ⚠️️ Possibly move to own repo 👈
  */
 public final class WizardHelper {}
 
@@ -38,9 +37,9 @@ extension WizardHelper {
       let types: [String] = [kUTTypeJSON as String, kUTTypeText as String, kUTTypeZipArchive as String] // "public.json"
       let controller = OpenFileVC(documentTypes: types, in: .import) // choose your desired documents the user is allowed to select, choose your desired UIDocumentPickerMode
       controller.delegate = controller // let documentPickerController = UIDocumentPickerViewController(forOpeningContentTypes: types)  //      let types = UTType.types(tag: "json", tagClass: UTTagClass.filenameExtension, conformingTo: nil)
-//      controller.modalPresentationStyle = .formSheet
-//      controller.allowsMultipleSelection = false
-//      controller.shouldShowFileExtensions = true
+      // controller.modalPresentationStyle = .formSheet
+      // controller.allowsMultipleSelection = false
+      // controller.shouldShowFileExtensions = true
       guard let vc = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
       vc.present(controller, animated: true)
       return controller.urls
