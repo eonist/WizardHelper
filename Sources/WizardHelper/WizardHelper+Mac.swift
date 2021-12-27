@@ -7,7 +7,7 @@ public final class WizardHelper {}
 extension WizardHelper {
    /**
     * Save
-    * - Fixme: ⚠️add support for more types
+    * - Fixme: ⚠️ add support for more types
     * - Parameters:
     *   - fileName: The suggested destination file name
     *   - fromURL: the origin URL of the file to save
@@ -15,6 +15,7 @@ extension WizardHelper {
    public static func promptSaveFile(fromURL: URL, fileName: String) {
       let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3", "json"], "Save file…", true) // Prompt the file viewer
       dialog.directoryURL = URL(fileURLWithPath: String(NSString(string: "~/Desktop/").expandingTildeInPath))
+      Swift.print("fileName:  \(fileName)")
       dialog.nameFieldStringValue = fileName // "test.json etc"
       let respons = dialog.runModal()
       if let toURL: URL = dialog.url, respons == NSApplication.ModalResponse.OK { // Make sure that a path was chosen
