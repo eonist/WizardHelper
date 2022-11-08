@@ -21,7 +21,7 @@ extension WizardHelper {
    public static func promptSaveFile(fromURL: URL, fileName: String, view: UIView) {
       let ac = UIActivityViewController(activityItems: [fromURL], applicationActivities: nil)
       ac.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
-      guard let vc = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
+      guard let vc: UIViewController = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
       ac.popoverPresentationController?.sourceView = vc.view
       vc.present(ac, animated: true, completion: nil)
    }
