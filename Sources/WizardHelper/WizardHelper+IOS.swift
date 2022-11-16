@@ -31,7 +31,7 @@ extension WizardHelper {
       let ac = UIActivityViewController(activityItems: [fromURL]/*dataToSave*/, applicationActivities: nil) // Activitis is items like share to twitter, copyToPasteboard, post to vimeo etc
       ac.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.copyToPasteboard] // We dont want airdrop
       ac.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-         Swift.print("👍 completionWithItemsHandler")
+         Swift.print("👍 completionWithItemsHandler completed: \(completed) error: \(error)")
          // ⚠️️ Note that completionWithItemsHandler may be called several times and you can end up deleting the file too early.
          if let shareError = error {
             print("save file - error while sharing: \(shareError.localizedDescription)")
@@ -46,12 +46,12 @@ extension WizardHelper {
                onComplete?()
             }
          }
-         do { // ref: https://stackoverflow.com/a/54031361/5389500
-            try FileManager.default.removeItem(at: fromURL)
-            Swift.print("Temporary file was successfully deleted. \(fromURL.absoluteString)")
-         } catch {
-            Swift.print("File " + fromURL.absoluteString + " can't be deleted.")
-         }
+//         do { // ref: https://stackoverflow.com/a/54031361/5389500
+//            try FileManager.default.removeItem(at: fromURL)
+//            Swift.print("Temporary file was successfully deleted. \(fromURL.absoluteString)")
+//         } catch {
+//            Swift.print("File " + fromURL.absoluteString + " can't be deleted.")
+//         }
       }
       guard let vc: UIViewController = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
       ac.popoverPresentationController?.sourceView = vc.view
