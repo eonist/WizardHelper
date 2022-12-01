@@ -13,7 +13,7 @@ WizardHelper.promptOpenFile(view: self)
 - Might require setting infoplist = "Application supports iTunes file sharing" : yes
 - Might require setting infoplist = "Supports Document Browser" : yes
 - See this link for more infoplist gotchas: https://stackoverflow.com/questions/70370908/showing-ios-app-files-within-in-the-files-app
-
+- Remember to set app-sandbox - user selected files - read/write to true
 ### Todo:
 - Add github action
 - Add tests

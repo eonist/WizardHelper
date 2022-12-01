@@ -14,6 +14,7 @@ extension WizardHelper {
     */
    public static func promptSaveFile(fromURL: URL, fileName: String) {
       let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3", "json"], "Save file…", true) // Prompt the file viewer
+      dialog.isExtensionHidden = false // ⚠️️ Must be set or extension is stripped
       dialog.directoryURL = URL(fileURLWithPath: String(NSString(string: "~/Desktop/").expandingTildeInPath))
       Swift.print("fileName:  \(fileName)")
       dialog.nameFieldStringValue = fileName // "test.json etc"
