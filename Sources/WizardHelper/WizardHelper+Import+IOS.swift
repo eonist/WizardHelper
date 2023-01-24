@@ -13,8 +13,8 @@ extension WizardHelper {
     * - Note: iOS 14: https://stackoverflow.com/a/42370660/5389500
     * - Note: Apple docs: https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller and https://developer.apple.com/documentation/uikit/view_controllers/adding_a_document_browser_to_your_app/presenting_selected_documents
     * - Note: All files: "public.data"
-    * - Remark: Seems like we cant make this sync like macOS ref: https://stackoverflow.com/a/40521834/5389500
     * - Note: Some claim it still possible with a counter and notification etc: https://stackoverflow.com/a/48659562/5389500
+    * - Remark: Seems like we cant make this sync like macOS ref: https://stackoverflow.com/a/40521834/5389500
     * - Fixme: ⚠️️ 👉 Add the UTType code, it's iOS 14 only 👈
     * - Parameters:
     *   - view: - Fixme: ⚠️️
@@ -79,7 +79,7 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
  */
 extension WizardHelper {
    /**
-    * - Fixme: ⚠️️ move to const ext
+    * - Fixme: ⚠️️ Move to const ext
     */
    public static let defaultTypes: [UTType] = {
       [.json, .text, .zip] // "public.json"

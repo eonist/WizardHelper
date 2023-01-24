@@ -39,14 +39,14 @@ extension WizardHelper {
 }
 extension WizardHelper {
    /**
+    * - Important: ⚠️️ Paths must be created with: `URL(fileURLWithPath: directory)` and then .path
+    * - Important: ⚠️️ The toURL needs to have the name of the file as well.
     * - Parameters:
     *   - fromURL: "/path/to/old"
     *   - toURL: "/path/to/new"
     * - Fixme: ⚠️️ additional catch clauses:
     * catch NSCocoaError.FileNoSuchFileError { print("Error: no such file exists" )
     * catch NSCocoaError.FileReadUnsupportedSchemeError { print("Error: unsupported scheme (should be 'file://')") }
-    * - Important: ⚠️️ paths must be created with: URL(fileURLWithPath: directory) and then .path
-    * - Important: ⚠️️ the toURL needs to have the name of the file as well.
     */
    @discardableResult fileprivate static func move(from: URL, to: URL) -> Bool {
       let fileManager = FileManager.default
@@ -61,10 +61,8 @@ extension WizardHelper {
 }
 extension NSSavePanel {
    /**
-    * Creates An NSSavePanel instance
+    * Creates An `NSSavePanel` instance
     * - Note: the initialize word is used instead of init, as init requires much more code to get working
-    * ## Examples:
-    * see git project
     */
    static func initialize(_ allowedFileTypes: [String] = ["xml"], _ title: String = "Save As", _ canCreateDirectories: Bool = true) -> NSSavePanel {
       let panel = NSSavePanel()
