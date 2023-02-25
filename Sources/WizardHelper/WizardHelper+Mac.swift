@@ -26,7 +26,7 @@ extension WizardHelper {
    }
    /**
     * Open
-    * - Note: you have an extension for NSSavePanel in WinExtension: See NSSavePanel.initialize....
+    * - Remark: you have an extension for NSSavePanel in WinExtension: See NSSavePanel.initialize....
     * ## Examples:
     * if let filePath = WizardHelper.promptOpenFile() { print(FileParser.content(filePath: filePath)) }
     */
@@ -39,8 +39,8 @@ extension WizardHelper {
 }
 extension WizardHelper {
    /**
-    * - Important: ⚠️️ Paths must be created with: `URL(fileURLWithPath: directory)` and then .path
-    * - Important: ⚠️️ The toURL needs to have the name of the file as well.
+    * - Remark: Paths must be created with: `URL(fileURLWithPath: directory)` and then .path
+    * - Remark: The toURL needs to have the name of the file as well.
     * - Parameters:
     *   - fromURL: "/path/to/old"
     *   - toURL: "/path/to/new"
