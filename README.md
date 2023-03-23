@@ -1,4 +1,5 @@
 [![Tests](https://github.com/sentryco/WizardHelper/actions/workflows/Tests.yml/badge.svg)](https://github.com/sentryco/WizardHelper/actions/workflows/Tests.yml)
+[![codebeat badge](https://codebeat.co/badges/9f71bf1b-cdba-4fb5-97f7-fa603fde7555)](https://codebeat.co/projects/github-com-eonist-wizardhelper-master)
 
 # WizardHelper
 
