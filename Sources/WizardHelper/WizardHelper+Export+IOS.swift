@@ -31,7 +31,7 @@ extension WizardHelper {
       // let dataToSave: [Any] = ["Save file: \(fileName)", fromURL] // [fromURL]
       let ac = UIActivityViewController(activityItems: [fromURL]/*dataToSave*/, applicationActivities: nil) // Activitis is items like share to twitter, copyToPasteboard, post to vimeo etc
       ac.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.copyToPasteboard] // We dont want airdrop
-      ac.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+      ac.completionWithItemsHandler = { (_: UIActivity.ActivityType?, completed: Bool, _: [Any]?, error: Error?) in
          Swift.print("👍 completionWithItemsHandler completed: \(completed) error: \(String(describing: error))")
          // ⚠️️ Note that completionWithItemsHandler may be called several times and you can end up deleting the file too early.
          if let shareError = error {

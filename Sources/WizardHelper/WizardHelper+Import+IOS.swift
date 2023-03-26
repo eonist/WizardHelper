@@ -24,7 +24,7 @@ extension WizardHelper {
    public static func promptOpenFile(view: UIView? = nil, types: [UTType] = defaultTypes, complete: @escaping OnOpenComplete) {
       guard let view = view ?? UIViewController.topMostController()?.view else { Swift.print("Err, ⚠️️ unable to get view"); return }
       // Swift.print("promptOpenFile")
-      let controller = OpenFileVC.init(forOpeningContentTypes: types)//.init(documentTypes: types, in: .import) // choose your desired documents the user is allowed to select, choose your desired UIDocumentPickerMode
+      let controller = OpenFileVC(forOpeningContentTypes: types)//.init(documentTypes: types, in: .import) // choose your desired documents the user is allowed to select, choose your desired UIDocumentPickerMode
       controller.delegate = controller // let documentPickerController = UIDocumentPickerViewController(forOpeningContentTypes: types)  //      let types = UTType.types(tag: "json", tagClass: UTTagClass.filenameExtension, conformingTo: nil)
       controller.onComplete = complete
       // controller.modalPresentationStyle = .overFullScreen
