@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "WizardHelper",
-    platforms: [.iOS(.v14)], // update to ios15?
+    platforms: [.iOS(.v15), .macOS(.v12)],
     products: [
         .library(
             name: "WizardHelper",
