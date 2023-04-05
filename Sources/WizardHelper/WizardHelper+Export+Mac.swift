@@ -1,6 +1,7 @@
 #if os(macOS)
 import Cocoa
-public final class WizardHelper {}
+import AppKit
+import UniformTypeIdentifiers
 /**
  * Util
  */
@@ -8,6 +9,7 @@ extension WizardHelper {
    /**
     * Save
     * - Fixme: ⚠️ add support for more types
+    * - Fixme: ⚠️️ add support for custom folder etc
     * - Parameters:
     *   - fileName: The suggested destination file name
     *   - fromURL: the origin URL of the file to save
@@ -16,27 +18,18 @@ extension WizardHelper {
       let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3", "json"], "Save file…", true) // Prompt the file viewer
       dialog.isExtensionHidden = false // ⚠️️ Must be set or extension is stripped
       dialog.directoryURL = URL(fileURLWithPath: String(NSString(string: "~/Desktop/").expandingTildeInPath))
-      Swift.print("fileName:  \(fileName)")
+      //      Swift.print("fileName:  \(fileName)")
       dialog.nameFieldStringValue = fileName // "test.json etc"
       let respons = dialog.runModal()
       if let toURL: URL = dialog.url, respons == NSApplication.ModalResponse.OK { // Make sure that a path was chosen
-         Swift.print("write to url.path.tildePath: \(toURL.path)")
+         //         Swift.print("write to url.path.tildePath: \(toURL.path)")
          move(from: fromURL, to: toURL)
       }
    }
-   /**
-    * Open
-    * - Remark: you have an extension for NSSavePanel in WinExtension: See NSSavePanel.initialize....
-    * ## Examples:
-    * if let filePath = WizardHelper.promptOpenFile() { print(FileParser.content(filePath: filePath)) }
-    */
-   public static func promptOpenFile() -> String? {
-      let myFileDialog: NSOpenPanel = .init() // Open modal panel
-      myFileDialog.runModal()
-      let thePath = myFileDialog.url?.path // Get the path to the file chosen in the NSOpenPanel
-      return thePath // Make sure that a path was chosen
-   }
 }
+/**
+ * Util
+ */
 extension WizardHelper {
    /**
     * - Remark: Paths must be created with: `URL(fileURLWithPath: directory)` and then .path
@@ -51,14 +44,20 @@ extension WizardHelper {
    @discardableResult fileprivate static func move(from: URL, to: URL) -> Bool {
       let fileManager = FileManager.default
       do {
+         if fileManager.fileExists(atPath: to.path) { // remove first if needed
+            try fileManager.removeItem(at: to)
+         }
          try fileManager.moveItem(at: from, to: to)
       } catch let error as NSError {
-         Swift.print("Error: \(error.domain)")
+         Swift.print("WizardHelper - move from: \(from) to: \(to) - Error: \(error.localizedDescription)")
          return false
       }
       return true
    }
 }
+/**
+ * Init
+ */
 extension NSSavePanel {
    /**
     * Creates An `NSSavePanel` instance
@@ -67,7 +66,8 @@ extension NSSavePanel {
    static func initialize(_ allowedFileTypes: [String] = ["xml"], _ title: String = "Save As", _ canCreateDirectories: Bool = true) -> NSSavePanel {
       let panel = NSSavePanel()
       panel.canCreateDirectories = canCreateDirectories
-      panel.allowedFileTypes = allowedFileTypes // ["css","html","pdf","png"]
+      panel.allowedContentTypes = allowedFileTypes.compactMap { UTType(filenameExtension: $0) }
+      //      panel.allowedFileTypes =  // ["css","html","pdf","png"]
       panel.title = title
       return panel
    }
