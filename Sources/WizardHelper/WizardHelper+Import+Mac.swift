@@ -8,6 +8,7 @@ public final class WizardHelper {}
 extension WizardHelper {
    /**
     * Open
+    * - Fixme: ⚠️️ add more doc
     * - Remark: you have an extension for NSSavePanel in WinExtension: See NSSavePanel.initialize....
     * ## Examples:
     * if let filePath = WizardHelper.promptOpenFile() { print(FileParser.content(filePath: filePath)) }

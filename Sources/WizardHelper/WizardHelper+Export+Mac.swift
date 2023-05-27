@@ -8,8 +8,8 @@ import UniformTypeIdentifiers
 extension WizardHelper {
    /**
     * Save
-    * - Fixme: ⚠️ add support for more types
-    * - Fixme: ⚠️️ add support for custom folder etc
+    * - Fixme: ⚠️ Add support for more types
+    * - Fixme: ⚠️️ Add support for custom folder etc
     * - Parameters:
     *   - fileName: The suggested destination file name
     *   - fromURL: the origin URL of the file to save

@@ -17,9 +17,9 @@ extension WizardHelper {
     * - Note: Seems like we cant make this sync like macOS ref: https://stackoverflow.com/a/40521834/5389500
     * - Fixme: ⚠️️ 👉 Add the UTType code, it's iOS 14 only 👈
     * - Parameters:
-    *   - view: - Fixme: ⚠️️
-    *   - types: - Fixme: ⚠️️
-    *   - complete: - Fixme: ⚠️️
+    *   - view: - Fixme: ⚠️️ add doc
+    *   - types: - Fixme: ⚠️️ add doc
+    *   - complete: - Fixme: ⚠️️ add doc
     */
    public static func promptOpenFile(view: UIView? = nil, types: [UTType] = defaultTypes, complete: @escaping OnOpenComplete) {
       guard let view = view ?? UIViewController.topMostController()?.view else { Swift.print("Err, ⚠️️ unable to get view"); return }
@@ -32,7 +32,7 @@ extension WizardHelper {
       // controller.allowsMultipleSelection = false
       // controller.shouldShowFileExtensions = true
       guard let vc = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
-      vc.present(controller, animated: true) { Swift.print("WizardHelper - prompt completed presenting") }
+      vc.present(controller, animated: true) { /*Swift.print("WizardHelper - prompt completed presenting")*/ }
    }
 }
 /**
@@ -45,12 +45,12 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
    /**
     * - Fixme: ⚠️️ doc
     * - Parameters:
-    *   - controller: - Fixme: ⚠️️
-    *   - urls: - Fixme: ⚠️️
+    *   - controller: - Fixme: ⚠️️ add doc
+    *   - urls: - Fixme: ⚠️️ add doc
     */
    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
       // self.urls = urls // do something with the selected documents
-      Swift.print("OpenFileVC - didPickDocumentsAt")
+      // Swift.print("OpenFileVC - didPickDocumentsAt")
       onComplete(.success(urls))
    }
    /**
@@ -61,7 +61,7 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
     */
    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
       // self.urls = [url]  // do something with the selected document
-      Swift.print("OpenFileVC - didPickDocumentAt")
+      // Swift.print("OpenFileVC - didPickDocumentAt")
       onComplete(.success([url]))
    }
    /**
@@ -69,7 +69,7 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
     * - Parameter controller: - Fixme: ⚠️️
     */
    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-      Swift.print("OpenFileVC - documentPickerWasCancelled")
+      // Swift.print("OpenFileVC - documentPickerWasCancelled")
       self.dismiss(animated: true, completion: nil)
       onComplete(.failure(NSError(domain: "User canceled", code: 0)))
    }
