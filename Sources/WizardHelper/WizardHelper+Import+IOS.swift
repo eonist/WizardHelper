@@ -82,7 +82,7 @@ extension WizardHelper {
     * - Fixme: ⚠️️ Move to const ext
     */
    public static let defaultTypes: [UTType] = {
-      [.json, .text, .zip] // "public.json"
+      [.json, .text, .zip, .data] // "public.json"
    }()
 }
 #endif
