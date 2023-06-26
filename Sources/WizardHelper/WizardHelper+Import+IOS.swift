@@ -16,6 +16,7 @@ extension WizardHelper {
     * - Note: Some claim it still possible with a counter and notification etc: https://stackoverflow.com/a/48659562/5389500
     * - Note: Seems like we cant make this sync like macOS ref: https://stackoverflow.com/a/40521834/5389500
     * - Fixme: ⚠️️ 👉 Add the UTType code, it's iOS 14 only 👈
+    * - Fixme: ⚠️️ get rid of the fatal error
     * - Parameters:
     *   - view: - Fixme: ⚠️️ add doc
     *   - types: - Fixme: ⚠️️ add doc
@@ -71,6 +72,7 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
       // Swift.print("OpenFileVC - documentPickerWasCancelled")
       self.dismiss(animated: true, completion: nil)
+      // - Fixme: ⚠️️ create a user canceled error case so we can switch on it etc
       onComplete(.failure(NSError(domain: "User canceled", code: 0)))
    }
 }
