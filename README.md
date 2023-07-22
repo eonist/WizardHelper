@@ -11,7 +11,7 @@ WizardHelper.promptSaveFile(fromURL: url, fileName: fileInfo.fileName, view: sel
 WizardHelper.promptOpenFile(view: self)
 ```
 
-### Gotcha (iOS): 
+### Gotcha (iOS):
 - Might require setting infoplist = "Supports opening documents in place" : yes
 - Might require setting infoplist = "Application supports iTunes file sharing" : yes
 - Might require setting infoplist = "Supports Document Browser" : yes
@@ -20,4 +20,4 @@ WizardHelper.promptOpenFile(view: self)
 
 ### Todo:
 - Add github action
-- Add tests
+- Add tests (UITests)
