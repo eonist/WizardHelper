@@ -15,14 +15,14 @@ extension WizardHelper {
     *   - fromURL: the origin URL of the file to save
     */
    public static func promptSaveFile(fromURL: URL, fileName: String) {
-      let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3", "json"], "Save file…", true) // Prompt the file viewer
+      let dialog: NSSavePanel = .initialize(["txt", "pdf", "mp3", "json", "data"], "Save file…", true) // Prompt the file viewer
       dialog.isExtensionHidden = false // ⚠️️ Must be set or extension is stripped
       dialog.directoryURL = URL(fileURLWithPath: String(NSString(string: "~/Desktop/").expandingTildeInPath))
       //      Swift.print("fileName:  \(fileName)")
       dialog.nameFieldStringValue = fileName // "test.json etc"
       let respons = dialog.runModal()
       if let toURL: URL = dialog.url, respons == NSApplication.ModalResponse.OK { // Make sure that a path was chosen
-         //         Swift.print("write to url.path.tildePath: \(toURL.path)")
+         // Swift.print("write to url.path.tildePath: \(toURL.path)")
          move(from: fromURL, to: toURL)
       }
    }
