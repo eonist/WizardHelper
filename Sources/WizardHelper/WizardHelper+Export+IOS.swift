@@ -66,6 +66,7 @@ extension WizardHelper {
       guard let vc: UIViewController = UIView.firstAvailableUIViewController(fromResponder: view) else { fatalError("ViewController not reachable") }
       // Set the source view for the popover presentation controller and present the activity view controller
       ac.popoverPresentationController?.sourceView = vc.view
+      // Present the activity view controller to the user
       vc.present(ac, animated: true, completion: nil)
    }
 }
