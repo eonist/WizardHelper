@@ -1,5 +1,14 @@
+# Ignore macOS-specific files
 .DS_Store
+
+# Ignore build artifacts
 /.build
+
+# Ignore package dependencies
 /Packages
+
+# Ignore Xcode project files
 /*.xcodeproj
+
+# Ignore Xcode user-specific data
 xcuserdata/
