@@ -14,7 +14,7 @@ let package = Package(
             name: "WizardHelper",
             // Include the "WizardHelper" target in the library
             targets: ["WizardHelper"])
-        ],
+    ],
     // Define the dependencies that this package requires
     dependencies: [
     ],
@@ -24,5 +24,5 @@ let package = Package(
             name: "WizardHelper",
             // This target has no dependencies
             dependencies: [])
-        ]
+    ]
 )
