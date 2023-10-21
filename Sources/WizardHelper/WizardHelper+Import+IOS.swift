@@ -56,7 +56,7 @@ extension WizardHelper {
    }
 }
 /**
- * - Fixme: ⚠️️ Add doc
+ * A view controller for opening a file in the iOS document picker.
  */
 private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelegate {
    /**
@@ -66,12 +66,12 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
    var onComplete: WizardHelper.OnOpenComplete = WizardHelper.defaultOnOpenComplete //(_ urls: [URL]) -> Void = { _ in Swift.print("on default complete")}
    // var urls: [URL] = []
    /**
- * The delegate method that is called when the user has selected one or more documents in the `UIDocumentPickerViewController`.
- * - Parameters:
- *   - controller: The `UIDocumentPickerViewController` instance that called the delegate method.
- *   - urls: An array of `URL` instances that represent the selected documents.
- * - Note: This method is not currently being used, as the `OpenFileVC` class is being used instead of `UIDocumentPickerViewController`.
- */
+    * The delegate method that is called when the user has selected one or more documents in the `UIDocumentPickerViewController`.
+    * - Parameters:
+    *   - controller: The `UIDocumentPickerViewController` instance that called the delegate method.
+    *   - urls: An array of `URL` instances that represent the selected documents.
+    * - Note: This method is not currently being used, as the `OpenFileVC` class is being used instead of `UIDocumentPickerViewController`.
+    */
    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
       // self.urls = urls // do something with the selected documents
       // Swift.print("OpenFileVC - didPickDocumentsAt")
