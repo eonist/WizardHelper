@@ -20,7 +20,7 @@ extension WizardHelper {
    public static func promptOpenFile() -> String? {
       let myFileDialog: NSOpenPanel = .init() // Create a new NSOpenPanel instance
       myFileDialog.runModal() // Open the modal panel
-      let thePath = myFileDialog.url?.path // Get the path to the selected file
+      let thePath: String? = myFileDialog.url?.path // Get the path to the selected file
       return thePath // Return the path, or nil if the user cancelled the operation
    }
 }

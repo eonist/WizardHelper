@@ -33,7 +33,7 @@ extension WizardHelper {
       // Set the suggested file name
       dialog.nameFieldStringValue = fileName
       // Show the save dialog and get the response
-      let respons = dialog.runModal()
+      let respons: NSApplication.ModalResponse = dialog.runModal()
       // If a path was chosen, move the file to the chosen path
       if let toURL: URL = dialog.url, respons == NSApplication.ModalResponse.OK {
          move(from: fromURL, to: toURL)
@@ -58,7 +58,7 @@ extension WizardHelper {
     */
    @discardableResult fileprivate static func move(from: URL, to: URL) -> Bool {
       // Get the default file manager
-      let fileManager = FileManager.default
+      let fileManager: FileManager = .default
       do {
          if fileManager.fileExists(atPath: to.path) { // remove first if needed
             try fileManager.removeItem(at: to)
@@ -85,7 +85,7 @@ extension NSSavePanel {
        * - Note: The `initialize` method is used instead of `init`, as `init` requires much more code to get working.
        */
       static func initialize(_ allowedFileTypes: [String] = ["xml"], _ title: String = "Save As", _ canCreateDirectories: Bool = true) -> NSSavePanel {
-         let panel = NSSavePanel() // Create a new NSSavePanel instance
+         let panel: NSSavePanel = .init() // Create a new NSSavePanel instance
          panel.canCreateDirectories = canCreateDirectories // Set whether the user is allowed to create directories
          panel.allowedContentTypes = allowedFileTypes.compactMap { UTType(filenameExtension: $0) } // Set the allowed content types based on the file extensions
          // panel.allowedFileTypes =  // ["css","html","pdf","png"]
