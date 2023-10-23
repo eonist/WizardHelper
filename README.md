@@ -52,7 +52,7 @@ WizardHelper.promptOpenFile(from: self) { result in
 
 ### Todo:
 - Add github action
-- Add tests (UITests)
+- Add tests (UITests) 👈
 
 ## License
 WizardHelper is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
