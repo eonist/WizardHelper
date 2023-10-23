@@ -16,13 +16,15 @@ let package = Package(
             targets: ["WizardHelper"])
     ],
     // Define the dependencies that this package requires
-    dependencies: [
-    ],
+    dependencies: [],
     // Define the "WizardHelper" target
     targets: [
            .target(
             name: "WizardHelper",
             // This target has no dependencies
-            dependencies: [])
+         dependencies: []),
+            .testTarget( // creates a new test target
+                name: "WizardHelperTests",
+                dependencies: ["WizardHelper"]) 
     ]
 )
