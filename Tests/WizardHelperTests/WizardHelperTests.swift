@@ -3,7 +3,8 @@ import XCTest
 
 final class WizardHelperTests: XCTestCase {
    func testExample() throws {
-      let types = WizardHelper.types
-      Swift.print("types: \(types)")
+      // quick assertion that methods can be summoned
+      _ = WizardHelper.promptOpenFile
+      _ = WizardHelper.promptSaveFile
    }
 }

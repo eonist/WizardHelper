@@ -11,8 +11,6 @@ import UniformTypeIdentifiers
  * Util
  */
 extension WizardHelper {
-   // fix add doc
-   public static var types: [String] = ["txt", "pdf", "mp3", "json", "data"]
    /**
     * Presents a save dialog for a file located at a given URL using `NSSavePanel`.
     * This function should be called from the main thread.
@@ -27,7 +25,8 @@ extension WizardHelper {
     */
    public static func promptSaveFile(fromURL: URL, fileName: String) {
       // Initialize the save panel with the allowed file types and the suggested file name
-      // fix: move the text outside of this method
+      // fix: move the text, types outside of this method
+      let types: [String] = ["txt", "pdf", "mp3", "json", "data"]
       let dialog: NSSavePanel = .initialize(types, "Save file…", true)
       // Show the extension in the file name
       dialog.isExtensionHidden = false
