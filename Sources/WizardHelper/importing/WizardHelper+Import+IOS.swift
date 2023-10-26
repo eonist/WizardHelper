@@ -34,6 +34,7 @@ extension WizardHelper {
     * - Note: Seems like we cant make this sync like macOS ref: https://stackoverflow.com/a/40521834/5389500
     * - Fixme: ⚠️️ 👉 Add the UTType code, it's iOS 14 only 👈
     * - Fixme: ⚠️️ get rid of the fatal error
+    * - Fixme: ⚠️️  add example
     * - Parameters:
     *   - view: The view to start the responder chain from.
     *   - types: An array of UTType instances that represent the allowed file types.
