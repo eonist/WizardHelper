@@ -22,6 +22,7 @@ extension WizardHelper {
    *   - onComplete: A closure to execute when the save dialog is completed or cancelled.
    * - Important: This function requires access to a view controller, so it should be moved to `ViewController.swift` and used with an event to propagate, or a method to get the current view controller from the point of view of the view or current app state should be added.
    * - Fixme: ⚠️️ To add a suggested name for the file, `UIActivityItemSource` should be added. See https://stackoverflow.com/a/40330064/5389500 for more information.
+   * - Fixme: ⚠️️ add support for success or failure in the onComplete
    * ## Examples:
    * StorageHelper.promptSaveFile(fromURL: url, view: self) {
    *     // Do additional cleanup, etc.
@@ -36,20 +37,20 @@ extension WizardHelper {
       ac.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.copyToPasteboard]
       // Set the completion handler for the activity view controller
       ac.completionWithItemsHandler = { (_: UIActivity.ActivityType?, completed: Bool, _: [Any]?, error: Error?) in
-         Swift.print("👍 completionWithItemsHandler completed: \(completed) error: \(String(describing: error))")
+//         Swift.print("👍 completionWithItemsHandler completed: \(completed) error: \(String(describing: error))")
          if let shareError = error {
             // If there was an error, print it and call the completion handler
-            print("save file - error while sharing: \(shareError.localizedDescription)")
+//            print("save file - error while sharing: \(shareError.localizedDescription)")
             onComplete?()
             return
          } else {
             if completed {
                // If the save was completed, print a message and call the completion handler
-               print("save file - completed")
+//               print("save file - completed")
                onComplete?()
             } else {
                // If the save was cancelled, print a message and call the completion handler
-               print("save file - cancel")
+//               print("save file - cancel")
                onComplete?()
             }
          }
