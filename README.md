@@ -22,7 +22,7 @@ You can install WizardHelper using Swift Package Manager. Add the following line
 
 ```swift
 .package(url: "https://github.com/eonist/WizardHelper.git", .branch: "master")
-
+```
 
 ### Examples:
 ```swift
