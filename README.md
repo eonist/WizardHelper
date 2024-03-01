@@ -21,7 +21,7 @@ WizardHelper is a Swift library that provides open and save prompts for macOS an
 You can install WizardHelper using Swift Package Manager. Add the following line to your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/sentryco/WizardHelper.git", from: "1.0.0")
+.package(url: "https://github.com/eonist/WizardHelper.git", .branch: "master")
 
 
 ### Examples:
@@ -53,6 +53,7 @@ WizardHelper.promptOpenFile(from: self) { result in
 ### Todo:
 - Add github action
 - Add tests (UITests) 👈
+- Add SwiftUI support 👈
 
 ## License
 WizardHelper is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
