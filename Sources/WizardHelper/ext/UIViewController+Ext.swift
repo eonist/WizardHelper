@@ -32,5 +32,17 @@ extension UIViewController {
       // Return the presented view controller if there is one, otherwise return the root view controller
       return win.rootViewController?.presentedViewController ?? win.rootViewController
    }
+   /**
+    * rootController (better support for SwiftUI)
+    * - Description: A RootController variable that can be accessed from anywhere
+    */
+   internal var rootController: UIViewController? {
+      let keyWin = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene } .flatMap { $0.windows } .first { $0.isKeyWindow }
+      var root = keyWin?.rootViewController
+      while let presentedViewController = root?.presentedViewController {
+         root = presentedViewController
+      }
+      return root
+   }
 }
 #endif

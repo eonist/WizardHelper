@@ -61,6 +61,7 @@ extension WizardHelper {
       #endif
    }
 }
+
 //Logger.error("\(Trace.trace()) - Error: \(error.localizedDescription)", tag: .file) // Logs the error with the trace and tag
 //      Swift.print("result:  \(String(describing: result))")
 //               handleImportRequest(result: .failure(error)) // Handles the import request with the error
