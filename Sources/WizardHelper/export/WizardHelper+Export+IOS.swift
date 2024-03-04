@@ -39,6 +39,7 @@ extension WizardHelper {
       ac.completionWithItemsHandler = { (_: UIActivity.ActivityType?, completed: Bool, _: [Any]?, error: Error?) in
 //         Swift.print("👍 completionWithItemsHandler completed: \(completed) error: \(String(describing: error))")
          if let shareError = error {
+            _ = shareError
             // If there was an error, print it and call the completion handler
 //            print("save file - error while sharing: \(shareError.localizedDescription)")
             onComplete?()
