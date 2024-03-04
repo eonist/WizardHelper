@@ -52,7 +52,7 @@ extension WizardHelper {
     * fileName is the suggested filename for macOS
     * - Note: We provide the view here, because WizardHelper can't find the view with swiftUI etc
     */
-   static func saveFile(fromURL: URL, fileName: String? = nil, onComplete: (()-> Void)?) {
+   public static func saveFile(fromURL: URL, fileName: String? = nil, onComplete: (()-> Void)?) {
       #if os(iOS)
       WizardHelper.promptSaveFile(fromURL: fromURL, view: rootController?.view, onComplete: onComplete)
       #elseif os(macOS)
