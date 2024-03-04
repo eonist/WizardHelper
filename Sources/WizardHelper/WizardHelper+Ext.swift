@@ -10,6 +10,9 @@ extension WizardHelper {
     */
    public typealias OnOpenCompleted = (_ url: URL?, _ error: Error?) -> Void
    /**
+    * Opens a file and calls the completion handler with the URL of the opened file or an error.
+    * - Parameter complete: A closure that is called when the file is opened or an error occurs. The closure takes two arguments: an optional URL and an optional Error. If the file is opened successfully, the URL is the URL of the file and the Error is nil. If an error occurs, the URL is nil and the Error is the error that occurred.
+    * - Note: On macOS, if the user cancels the file open dialog, the Error is an NSError with the domain "User canceled" and the code 0.
     * - Note: MacOs supports only one file at the moment
     * - Fixme: ⚠️️ use result instead? I think e can get the caller code short etc
     * - Fixme: ⚠️️ Make an extension to wizardHelper that supports both os:
@@ -35,13 +38,17 @@ extension WizardHelper {
       }
       #endif
    }
+   
 }
 /**
  * Save file (Hybrid macOS / iOS)
  */
 extension WizardHelper {
    /**
-    * - Fixme: ⚠️️ add doc
+    * Saves a file from a specified URL to a location chosen by the user.
+    * - Parameter fromURL: The URL of the file to save.
+    * - Parameter fileName: The default name for the saved file. If this parameter is nil, the last path component of fromURL is used.
+    * - Parameter onComplete: A closure that is called when the file is saved.
     * fileName is the suggested filename for macOS
     * - Note: We provide the view here, because WizardHelper can't find the view with swiftUI etc
     */

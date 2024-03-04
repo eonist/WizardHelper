@@ -43,6 +43,21 @@ WizardHelper.promptOpenFile(from: self) { result in
 }
 ```
 
+### Example (hybrid iOS / macOS)
+```swift
+// open
+ WizardHelper.openFile { (url, error) in
+     if let url = url {
+         print("Opened file at \(url)")
+     } else if let error = error {
+         print("Failed to open file: \(error)")
+     }
+ }
+ // save
+ let url = URL(string: "https://example.com/myfile.txt")! 
+ WizardHelper.saveFile(fromURL: url, fileName: "SavedFile.txt") { print("File saved") }
+```
+
 ### Gotcha  iOS
 
 - You might need to set `Supports opening documents in place`, `Application supports iTunes file sharing`, and `Supports Document Browser` to `YES` in your app's Info.plist file.
