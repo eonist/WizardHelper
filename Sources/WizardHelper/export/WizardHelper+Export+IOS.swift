@@ -3,7 +3,7 @@ import UIKit
 import MobileCoreServices
 import UniformTypeIdentifiers
 /**
- * Cross-platform save file wizard for iOS and macOS.
+ * Cross-platform save file wizard for iOS and macOS
  * This class provides a unified API for saving files via a save dialog on both iOS and macOS.
  * - Note: The export and import functionality should be moved into separate files.
  * - Note: A typealias for closures and better organization should be added, as well as support for custom file types.
@@ -12,22 +12,23 @@ public final class WizardHelper {}
 
 extension WizardHelper {
    /**
-   * Presents a save dialog for a file located at a given URL using `UIActivityViewController`.
-   * This function should be called from the main thread.
-   * - Note: The export and import functionality should be moved into separate files.
-   * - Note: A typealias for closures and better organization should be added, as well as support for custom file types.
-   * - Parameters:
-   *   - fromURL: The URL of the file to save.
-   *   - view: The view to launch the save dialog from.
-   *   - onComplete: A closure to execute when the save dialog is completed or cancelled.
-   * - Important: This function requires access to a view controller, so it should be moved to `ViewController.swift` and used with an event to propagate, or a method to get the current view controller from the point of view of the view or current app state should be added.
-   * - Fixme: ⚠️️ To add a suggested name for the file, `UIActivityItemSource` should be added. See https://stackoverflow.com/a/40330064/5389500 for more information.
-   * - Fixme: ⚠️️ add support for success or failure in the onComplete
-   * ## Examples:
-   * StorageHelper.promptSaveFile(fromURL: url, view: self) {
-   *     // Do additional cleanup, etc.
-   * }
-   */
+    * Presents a save dialog for a file located at a given URL using `UIActivityViewController`.
+    * This function should be called from the main thread.
+    * - Note: The export and import functionality should be moved into separate files.
+    * - Note: A typealias for closures and better organization should be added, as well as support for custom file types.
+    * - Parameters:
+    *   - fromURL: The URL of the file to save.
+    *   - view: The view to launch the save dialog from.
+    *   - onComplete: A closure to execute when the save dialog is completed or cancelled.
+    * - Important: This function requires access to a view controller, so it should be moved to `ViewController.swift` and used with an event to propagate, or a method to get the current view controller from the point of view of the view or current app state should be added.
+    * - Fixme: ⚠️️ To add a suggested name for the file, `UIActivityItemSource` should be added. See https://stackoverflow.com/a/40330064/5389500 for more information.
+    * - Fixme: ⚠️️ Add support for success or failure in the onComplete, Result etc, and add completion alias etc
+    * - Fixme: ⚠️️ ask copilot to improve this code
+    * ## Examples:
+    * StorageHelper.promptSaveFile(fromURL: url, view: self) {
+    *     // Do additional cleanup, etc.
+    * }
+    */
    public static func promptSaveFile(fromURL: URL, view: UIView? = nil, onComplete: (() -> Void)?) {
       // Get the view controller to present the save dialog from
       guard let view = view ?? UIViewController.topMostController()?.view else { Swift.print("Err, ⚠️️ unable to get view"); return }
@@ -37,21 +38,21 @@ extension WizardHelper {
       ac.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.copyToPasteboard]
       // Set the completion handler for the activity view controller
       ac.completionWithItemsHandler = { (_: UIActivity.ActivityType?, completed: Bool, _: [Any]?, error: Error?) in
-//         Swift.print("👍 completionWithItemsHandler completed: \(completed) error: \(String(describing: error))")
+         // Swift.print("👍 completionWithItemsHandler completed: \(completed) error: \(String(describing: error))")
          if let shareError = error {
             _ = shareError
             // If there was an error, print it and call the completion handler
-//            print("save file - error while sharing: \(shareError.localizedDescription)")
+            // print("save file - error while sharing: \(shareError.localizedDescription)")
             onComplete?()
             return
          } else {
             if completed {
                // If the save was completed, print a message and call the completion handler
-//               print("save file - completed")
+               // print("save file - completed")
                onComplete?()
             } else {
                // If the save was cancelled, print a message and call the completion handler
-//               print("save file - cancel")
+               // print("save file - cancel")
                onComplete?()
             }
          }

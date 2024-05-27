@@ -18,7 +18,8 @@ extension WizardHelper {
     * - Parameters:
     *   - fromURL: The URL of the file to save.
     *   - fileName: The suggested destination file name.
-    * - Important: This function requires access to a view controller, so it should be moved to `ViewController.swift` and used with an event to propagate, or a method to get the current view controller from the point of view of the view or current app state should be added.
+    * - Important: ⚠️️ This function requires access to a view controller, so it should be moved to `ViewController.swift` and used with an event to propagate, or a method to get the current view controller from the point of view of the view or current app state should be added.
+    * - Fixme: ⚠️️ ask copilot to improve this code
     * - Fixme: ⚠️️ To add support for custom folders, `NSOpenPanel` should be used instead. See https://stackoverflow.com/a/24623638/5389500 for more information.
     * ## Examples:
     * StorageHelper.promptSaveFile(fromURL: url, fileName: "test.json")
@@ -55,6 +56,7 @@ extension WizardHelper {
     *   - from: The URL of the file to move.
     *   - to: The URL to move the file to.
     * - Returns: `true` if the file was moved successfully, `false` otherwise.
+    * - Fixme: ⚠️️ ask copilot to improve this code
     * - Fixme: ⚠️️ Additional catch clauses should be added for more specific error handling:
     *   - `NSCocoaError.FileNoSuchFileError`: no such file exists
     *   - `NSCocoaError.FileReadUnsupportedSchemeError`: unsupported scheme (should be 'file://')
@@ -79,21 +81,22 @@ extension WizardHelper {
  */
 extension NSSavePanel {
    /**
-       * Creates an `NSSavePanel` instance with the specified parameters.
-       * - Parameters:
-       *   - allowedFileTypes: An array of file types that the user is allowed to save.
-       *   - title: The title of the save panel.
-       *   - canCreateDirectories: A Boolean value that indicates whether the user is allowed to create directories.
-       * - Returns: An `NSSavePanel` instance.
-       * - Note: The `initialize` method is used instead of `init`, as `init` requires much more code to get working.
-       */
-      static func initialize(_ allowedFileTypes: [String] = ["xml"], _ title: String = "Save As", _ canCreateDirectories: Bool = true) -> NSSavePanel {
-         let panel: NSSavePanel = .init() // Create a new NSSavePanel instance
-         panel.canCreateDirectories = canCreateDirectories // Set whether the user is allowed to create directories
-         panel.allowedContentTypes = allowedFileTypes.compactMap { UTType(filenameExtension: $0) } // Set the allowed content types based on the file extensions
-         // panel.allowedFileTypes =  // ["css","html","pdf","png"]
-         panel.title = title // Set the title of the save panel
-         return panel // Return the save panel instance
-      }
+    * Creates an `NSSavePanel` instance with the specified parameters.
+    * - Parameters:
+    *   - allowedFileTypes: An array of file types that the user is allowed to save.
+    *   - title: The title of the save panel.
+    *   - canCreateDirectories: A Boolean value that indicates whether the user is allowed to create directories.
+    * - Fixme: ⚠️️ ask copilot to improve this code
+    * - Returns: An `NSSavePanel` instance.
+    * - Note: The `initialize` method is used instead of `init`, as `init` requires much more code to get working.
+    */
+   static func initialize(_ allowedFileTypes: [String] = ["xml"], _ title: String = "Save As", _ canCreateDirectories: Bool = true) -> NSSavePanel {
+      let panel: NSSavePanel = .init() // Create a new NSSavePanel instance
+      panel.canCreateDirectories = canCreateDirectories // Set whether the user is allowed to create directories
+      panel.allowedContentTypes = allowedFileTypes.compactMap { UTType(filenameExtension: $0) } // Set the allowed content types based on the file extensions
+      // panel.allowedFileTypes =  // ["css","html","pdf","png"]
+      panel.title = title // Set the title of the save panel
+      return panel // Return the save panel instance
+   }
 }
 #endif

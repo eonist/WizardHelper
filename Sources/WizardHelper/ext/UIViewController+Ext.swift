@@ -8,6 +8,7 @@ extension UIViewController {
     * Returns the top most UIViewController in the view controller hierarchy.
     * This function searches from the root view controller and returns the top most view controller.
     * - Returns: The top most UIViewController in the view controller hierarchy.
+    * - Fixme: ⚠️️ ask copilot to improve this code
     * ## Examples:
     * UIViewCOntroller.topMostController()?.view.backgroundColor = .green
     */
@@ -24,6 +25,7 @@ extension UIViewController {
    /**
     * Returns the root view controller of the app.
     * This function gets the window from the app delegate and returns the root view controller.
+    * - Fixme: ⚠️️ ask copilot to improve this code
     * - Returns: The root view controller of the app.
     */
    private static var rootVC: UIViewController? {
@@ -36,6 +38,7 @@ extension UIViewController {
 /**
  * rootController (better support for SwiftUI)
  * - Description: A RootController variable that can be accessed from anywhere
+ * - Fixme: ⚠️️ ask copilot to improve this code
  */
 internal var rootController: UIViewController? {
    let keyWin = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene } .flatMap { $0.windows } .first { $0.isKeyWindow }

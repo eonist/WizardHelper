@@ -2,6 +2,7 @@ import SwiftUI
 // import WizardHelper
 /**
  * Open (Hybrid macOS / iOS)
+ * - Description: One api -> Works in 2 OSes
  */
 extension WizardHelper {
    // typealias OpenResult = Result<[URL], Error>
@@ -17,6 +18,8 @@ extension WizardHelper {
     * - Fixme: ⚠️️ use result instead? I think e can get the caller code short etc
     * - Fixme: ⚠️️ Make an extension to wizardHelper that supports both os:
     * - Fixme: ⚠️️ and probably do the same for export, both should have onComplete etc
+    * - Fixme: ⚠️️ ask copilot to improve this code
+    * - Fixme: ⚠️️ use Result?
     */
    public static func openFile(complete: @escaping OnOpenCompleted) { // - Fixme: ⚠️️ this should probably be optional
       #if os(iOS)
@@ -46,11 +49,14 @@ extension WizardHelper {
 extension WizardHelper {
    /**
     * Saves a file from a specified URL to a location chosen by the user.
-    * - Parameter fromURL: The URL of the file to save.
-    * - Parameter fileName: The default name for the saved file. If this parameter is nil, the last path component of fromURL is used.
-    * - Parameter onComplete: A closure that is called when the file is saved.
+    * - Parameters:
+    *   - fromURL: The URL of the file to save.
+    *   - fileName: The default name for the saved file. If this parameter is nil, the last path component of fromURL is used.
+    *   - onComplete: A closure that is called when the file is saved.
     * fileName is the suggested filename for macOS
     * - Note: We provide the view here, because WizardHelper can't find the view with swiftUI etc
+    * - Fixme: ⚠️️ ask copilot to improve this code
+    * - Fixme: ⚠️️ use Result?
     */
    public static func saveFile(fromURL: URL, fileName: String? = nil, onComplete: (()-> Void)?) {
       #if os(iOS)
