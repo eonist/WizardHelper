@@ -41,7 +41,7 @@ extension WizardHelper {
       }
       #endif
    }
-   
+
 }
 /**
  * Save file (Hybrid macOS / iOS)
@@ -58,7 +58,7 @@ extension WizardHelper {
     * - Fixme: ⚠️️ ask copilot to improve this code
     * - Fixme: ⚠️️ use Result?
     */
-   public static func saveFile(fromURL: URL, fileName: String? = nil, onComplete: (()-> Void)?) {
+   public static func saveFile(fromURL: URL, fileName: String? = nil, onComplete: (() -> Void)?) {
       #if os(iOS)
       WizardHelper.promptSaveFile(fromURL: fromURL, view: rootController?.view, onComplete: onComplete)
       #elseif os(macOS)
@@ -68,24 +68,22 @@ extension WizardHelper {
    }
 }
 
-//Logger.error("\(Trace.trace()) - Error: \(error.localizedDescription)", tag: .file) // Logs the error with the trace and tag
+// Logger.error("\(Trace.trace()) - Error: \(error.localizedDescription)", tag: .file) // Logs the error with the trace and tag
 //      Swift.print("result:  \(String(describing: result))")
 //               handleImportRequest(result: .failure(error)) // Handles the import request with the error
 //               return nil
-//switch result {
-//case .success(let urls):
+// switch result {
+// case .success(let urls):
 //   Swift.print("urls: \(urls)")
 //   // Do something with the selected URLs
-//case .failure(let error):
+// case .failure(let error):
 //   Swift.print("error:  \(error)")
 //   // Handle the error
 //   }
-//Logger.error("\(Trace.trace()) - Error: \(error.localizedDescription)", tag: .file) // Logs the error with the trace and tag
+// Logger.error("\(Trace.trace()) - Error: \(error.localizedDescription)", tag: .file) // Logs the error with the trace and tag
 
 //         guard let firstURL: URL = urls.first else { // Represents the first URL
 //            Logger.error("\(Trace.trace()) - Err ⚠️️ open file", tag: .file) // Logs the error with the trace and tag
 //            handleImportRequest(result: .failure(NSError(domain: "No urls", code: 0))) // Handles the import request with the error
 //            return // Returns if the first URL is nil
 //         }
-
-

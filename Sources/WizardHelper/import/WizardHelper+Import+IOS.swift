@@ -64,7 +64,7 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
     * The completion handler for an open operation, which is called when the user has selected a file or cancelled the operation.
     * - Note: The `urls` parameter is optional to account for when the user cancels the operation.
     */
-   var onComplete: WizardHelper.OnOpenComplete = WizardHelper.defaultOnOpenComplete //(_ urls: [URL]) -> Void = { _ in Swift.print("on default complete")}
+   var onComplete: WizardHelper.OnOpenComplete = WizardHelper.defaultOnOpenComplete // (_ urls: [URL]) -> Void = { _ in Swift.print("on default complete")}
    // var urls: [URL] = []
    /**
     * The delegate method that is called when the user has selected one or more documents in the `UIDocumentPickerViewController`.

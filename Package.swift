@@ -25,6 +25,6 @@ let package = Package(
          dependencies: []),
             .testTarget( // creates a new test target
                 name: "WizardHelperTests",
-                dependencies: ["WizardHelper"]) 
+                dependencies: ["WizardHelper"])
     ]
 )
