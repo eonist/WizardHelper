@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
@@ -6,7 +6,7 @@ let package = Package(
     name: "WizardHelper",
     // Set the minimum platform versions for iOS and macOS
     // This package requires at least iOS 15 and macOS 12
-    platforms: [.iOS(.v15), .macOS(.v12)],
+    platforms: [.iOS(.v17), .macOS(.v14)],
     // Define the products that this package provides
     products: [
         // Define a library product with the name "WizardHelper"

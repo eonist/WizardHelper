@@ -69,6 +69,4 @@ WizardHelper.promptOpenFile(from: self) { result in
 - Add github action
 - Add tests (UITests) 👈
 - Add SwiftUI support 👈
-
-## License
-WizardHelper is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
+- Upgrade to swift 6.0 (This might be a bit tricky but doable)

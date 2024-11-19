@@ -23,7 +23,7 @@ extension WizardHelper {
     * - Important: This function requires access to a view controller, so it should be moved to `ViewController.swift` and used with an event to propagate, or a method to get the current view controller from the point of view of the view or current app state should be added.
     * - Fixme: ⚠️️ To add a suggested name for the file, `UIActivityItemSource` should be added. See https://stackoverflow.com/a/40330064/5389500 for more information.
     * - Fixme: ⚠️️ Add support for success or failure in the onComplete, Result etc, and add completion alias etc
-    * - Fixme: ⚠️️ ask copilot to improve this code
+    * - Fixme: ⚠️️ Ask copilot to improve this code
     * ## Examples:
     * StorageHelper.promptSaveFile(fromURL: url, view: self) {
     *     // Do additional cleanup, etc.

@@ -22,7 +22,11 @@ extension WizardHelper {
     * The default completion handler for an open operation, which simply logs the result.
     * - Parameter result: The result of the open operation.
     */
-   public static let defaultOnOpenComplete: OnOpenComplete = { result in Swift.print("on default complete result: \(result)") }
+   public static var defaultOnOpenComplete: OnOpenComplete {
+      { result in
+         Swift.print("on default complete result: \(result)")
+      }
+   }
    /**
     * Presents an `OpenFileVC` instance on the first available `UIViewController` from the responder chain.
     * - Remark: All files: "public.data"
@@ -34,7 +38,8 @@ extension WizardHelper {
     * - Note: Seems like we cant make this sync like macOS ref: https://stackoverflow.com/a/40521834/5389500
     * - Fixme: ⚠️️ 👉 Add the UTType code, it's iOS 14 only 👈
     * - Fixme: ⚠️️ get rid of the fatal error
-    * - Fixme: ⚠️️  add example
+    * - Fixme: ⚠️️ add example
+    * - Fixme: ⚠️️ we will probably make this non static and use singlton to access it in the future?
     * - Parameters:
     *   - view: The view to start the responder chain from.
     *   - types: An array of UTType instances that represent the allowed file types.
