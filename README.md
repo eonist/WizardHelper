@@ -1,5 +1,7 @@
 [![Tests](https://github.com/sentryco/WizardHelper/actions/workflows/Tests.yml/badge.svg)](https://github.com/sentryco/WizardHelper/actions/workflows/Tests.yml)
 [![codebeat badge](https://codebeat.co/badges/9f71bf1b-cdba-4fb5-97f7-fa603fde7555)](https://codebeat.co/projects/github-com-eonist-wizardhelper-master)
+[![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
+![Platforms](https://img.shields.io/badge/platforms-iOS%2017%20|%20macOS%2014-blue.svg)
 
 # WizardHelper
 
@@ -41,6 +43,18 @@ WizardHelper.promptOpenFile(from: self) { result in
         // Handle the error
     }
 }
+
+// iOS: Prompt the user to open a file with error handling
+WizardHelper.promptOpenFile { result in
+    switch result {
+    case .success(let urls):
+        // Do something with the selected URLs
+        print("Selected files: \(urls)")
+    case .failure(let error):
+        // Handle the error
+        print("Error: \(error.localizedDescription)")
+    }
+}
 ```
 
 ### Example (hybrid iOS / macOS)
@@ -60,13 +74,98 @@ WizardHelper.promptOpenFile(from: self) { result in
 
 ### Gotcha  iOS
 
-- You might need to set `Supports opening documents in place`, `Application supports iTunes file sharing`, and `Supports Document Browser` to `YES` in your app's Info.plist file.
-- You might need to set `app-sandbox - user selected files - read / write` to `true`.
-- See [this link](https://stackoverflow.com/questions/70370908/showing-ios-app-files-within-in-the-files-app) for more Info.plist gotchas.
+To use WizardHelper on iOS, you need to update your app's `Info.plist` file with the following:
 
+- **Supports opening documents in place**: Set to `YES`
+- **Application supports iTunes file sharing**: Set to `YES`
+- **Supports Document Browser**: Set to `YES`
+- **App Sandbox** (if applicable): Enable `User Selected Files - Read/Write`
+
+**Example `Info.plist` entries:**
+
+```xml
+<key>LSSupportsOpeningDocumentsInPlace</key>
+<true/>
+<key>UIFileSharingEnabled</key>
+<true/>
+<key>UISupportsDocumentBrowser</key>
+<true/>
+```
+
+For more details, refer to [this StackOverflow answer](https://stackoverflow.com/questions/70370908/showing-ios-app-files-within-in-the-files-app).
 
 ### Todo:
 - Add github action
+- Add error handling when moving files
 - Add tests (UITests) 👈
 - Add SwiftUI support 👈
 - Upgrade to swift 6.0 (This might be a bit tricky but doable)
+- Use Result type for better error handling in asynchronous methods:
+
+```swift
+public typealias SaveFileResult = Result<Void, Error>
+public typealias SaveFileCompletion = (SaveFileResult) -> Void
+
+public static func saveFile(fromURL: URL, fileName: String? = nil, onComplete: @escaping SaveFileCompletion) {
+    #if os(iOS)
+    WizardHelper.promptSaveFile(fromURL: fromURL, view: rootController?.view) { result in
+        onComplete(result)
+    }
+    #elseif os(macOS)
+    do {
+        try WizardHelper.promptSaveFile(fromURL: fromURL, fileName: fileName ?? fromURL.lastPathComponent)
+        onComplete(.success(()))
+    } catch {
+        onComplete(.failure(error))
+    }
+    #endif
+}
+```
+
+- Avoid force unwrapping and provide better error messages:
+In WizardHelper+Import+IOS.swift, replace fatalError with proper error handling:
+```swift
+public static func promptOpenFile(view: UIView? = nil, types: [UTType] = defaultTypes, complete: @escaping OnOpenComplete) {
+    guard let view = view ?? UIViewController.topMostController()?.view else {
+        complete(.failure(NSError(domain: "ViewControllerNotFound", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unable to find a view controller to present from."])))
+        return
+    }
+    // Rest of the method...
+}
+```
+- Enhance the promptSaveFile method on iOS to allow setting a default file name:
+Since UIActivityViewController doesn't support specifying a default file name, consider using UIDocumentPickerViewController for exporting files:
+
+```swift
+public static func promptSaveFile(fromURL: URL, suggestedFileName: String? = nil, view: UIView? = nil, onComplete: (() -> Void)?) {
+    guard let view = view ?? UIViewController.topMostController()?.view else {
+        onComplete?()
+        return
+    }
+    
+    let documentPicker = UIDocumentPickerViewController(forExporting: [fromURL], asCopy: true)
+    documentPicker.delegate = ExportDelegate(onComplete: onComplete)
+    documentPicker.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+    if let fileName = suggestedFileName {
+        documentPicker.directoryURL = documentPicker.directoryURL?.appendingPathComponent(fileName)
+    }
+    
+    UIViewController.topMostController()?.present(documentPicker, animated: true, completion: nil)
+}
+
+private class ExportDelegate: NSObject, UIDocumentPickerDelegate {
+    let onComplete: (() -> Void)?
+    
+    init(onComplete: (() -> Void)?) {
+        self.onComplete = onComplete
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        onComplete?()
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        onComplete?()
+    }
+}
+```

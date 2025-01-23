@@ -11,23 +11,26 @@ extension UIView {
     * - Returns: The first available UIViewController found in the responder chain.
     */
    internal static func firstAvailableUIViewController(fromResponder responder: UIResponder) -> UIViewController? {
-      func traverseResponderChainForUIViewController(responder: UIResponder) -> UIViewController? {
-         // Check if there is a next responder in the chain
-         if let nextResponder = responder.next {
-            // Check if the next responder is a UIViewController
-            if let nextResp = nextResponder as? UIViewController {
-               // If it is, return it
-               return nextResp
-            } else {
-               // If it's not, recursively call this function with the next responder
-               return traverseResponderChainForUIViewController(responder: nextResponder)
-            }
-         }
-         // If there are no more responders in the chain, return nil
-         return nil
-      }
-      // Call the function with the initial responder to start the search
-      return traverseResponderChainForUIViewController(responder: responder)
+      // ⚠️️ new
+      // The current implementation uses recursion to traverse the responder chain. You can simplify it using Swift's sequence(first:next:) function:
+      sequence(first: responder, next: { $0.next }).first(where: { $0 is UIViewController }) as? UIViewController
+      // func traverseResponderChainForUIViewController(responder: UIResponder) -> UIViewController? {
+      //    // Check if there is a next responder in the chain
+      //    if let nextResponder = responder.next {
+      //       // Check if the next responder is a UIViewController
+      //       if let nextResp = nextResponder as? UIViewController {
+      //          // If it is, return it
+      //          return nextResp
+      //       } else {
+      //          // If it's not, recursively call this function with the next responder
+      //          return traverseResponderChainForUIViewController(responder: nextResponder)
+      //       }
+      //    }
+      //    // If there are no more responders in the chain, return nil
+      //    return nil
+      // }
+      // // Call the function with the initial responder to start the search
+      // return traverseResponderChainForUIViewController(responder: responder)
    }
 }
 #endif
