@@ -169,3 +169,152 @@ private class ExportDelegate: NSObject, UIDocumentPickerDelegate {
     }
 }
 ```
+
+
+   Implement SwiftUI wrappers for your open and save dialogs to make the library more compatible with SwiftUI projects.
+
+   ```swift:Sources/WizardHelper/SwiftUI/WizardHelper+SwiftUI.swift
+   import SwiftUI
+   import UniformTypeIdentifiers
+
+   @available(iOS 13.0, macOS 10.15, *)
+   public struct FileImporter: UIViewControllerRepresentable {
+       @Binding var isPresented: Bool
+       @Binding var importedURL: URL?
+       var allowedContentTypes: [UTType] = [.data]
+
+       public func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+           let picker = UIDocumentPickerViewController(forOpeningContentTypes: allowedContentTypes)
+           picker.delegate = context.coordinator
+           return picker
+       }
+
+       public func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+           uiViewController.allowsMultipleSelection = false
+       }
+
+       public func makeCoordinator() -> Coordinator {
+           Coordinator(self)
+       }
+
+       public class Coordinator: NSObject, UIDocumentPickerDelegate {
+           var parent: FileImporter
+
+           init(_ parent: FileImporter) {
+               self.parent = parent
+           }
+
+           public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+               parent.importedURL = urls.first
+               parent.isPresented = false
+           }
+
+           public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+               parent.isPresented = false
+           }
+       }
+   }
+
+   @available(iOS 13.0, macOS 10.15, *)
+   public struct FileExporter: UIViewControllerRepresentable {
+       @Binding var isPresented: Bool
+       var document: URL
+
+       public func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+           let picker = UIDocumentPickerViewController(forExporting: [document], asCopy: true)
+           picker.delegate = context.coordinator
+           return picker
+       }
+
+       public func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+
+       public func makeCoordinator() -> Coordinator {
+           Coordinator(self)
+       }
+
+       public class Coordinator: NSObject, UIDocumentPickerDelegate {
+           var parent: FileExporter
+
+           init(_ parent: FileExporter) {
+               self.parent = parent
+           }
+
+           public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+               parent.isPresented = false
+           }
+       }
+   }
+   ```
+
+   **Usage Example:**
+
+   ```swift
+   import SwiftUI
+
+   struct ContentView: View {
+       @State private var isImporterPresented = false
+       @State private var isExporterPresented = false
+       @State private var importedURL: URL?
+
+       var body: some View {
+           VStack {
+               Button("Import File") {
+                   isImporterPresented = true
+               }
+               .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.text]) { result in
+                   switch result {
+                   case .success(let url):
+                       importedURL = url
+                   case .failure(let error):
+                       print("Import error: \(error.localizedDescription)")
+                   }
+               }
+
+               Button("Export File") {
+                   isExporterPresented = true
+               }
+               .fileExporter(isPresented: $isExporterPresented, document: URL(fileURLWithPath: "path/to/document.txt"), contentType: .plainText) { result in
+                   switch result {
+                   case .success:
+                       print("Export successful")
+                   case .failure(let error):
+                       print("Export error: \(error.localizedDescription)")
+                   }
+               }
+           }
+       }
+   }
+   ```
+
+
+   Implement unit tests to ensure your library functions correctly and to prevent regressions.
+
+   ```swift:Tests/WizardHelperTests/WizardHelperUnitTests.swift
+   import XCTest
+   @testable import WizardHelper
+
+   final class WizardHelperUnitTests: XCTestCase {
+       func testOpenFile_macOS() throws {
+           #if os(macOS)
+           let expectation = self.expectation(description: "File open dialog should be presented")
+           WizardHelper.openFile { url, error in
+               XCTAssertNil(error)
+               XCTAssertNotNil(url)
+               expectation.fulfill()
+           }
+           waitForExpectations(timeout: 5, handler: nil)
+           #endif
+       }
+
+       func testSaveFile_macOS() throws {
+           #if os(macOS)
+           let expectation = self.expectation(description: "File save dialog should be presented")
+           let url = URL(fileURLWithPath: "/path/to/dummy.txt")
+           WizardHelper.saveFile(fromURL: url, fileName: "Test.txt") {
+               expectation.fulfill()
+           }
+           waitForExpectations(timeout: 5, handler: nil)
+           #endif
+       }
+   }
+   ```
