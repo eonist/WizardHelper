@@ -90,7 +90,11 @@ extension NSSavePanel {
     * - Returns: An `NSSavePanel` instance.
     * - Note: The `initialize` method is used instead of `init`, as `init` requires much more code to get working.
     */
-   static func initialize(_ allowedFileTypes: [String] = ["xml"], _ title: String = "Save As", _ canCreateDirectories: Bool = true) -> NSSavePanel {
+   static func initialize(
+      _ allowedFileTypes: [String] = ["xml"],
+      _ title: String = "Save As",
+      _ canCreateDirectories: Bool = true
+   ) -> NSSavePanel {
       let panel: NSSavePanel = .init() // Create a new NSSavePanel instance
       panel.canCreateDirectories = canCreateDirectories // Set whether the user is allowed to create directories
       panel.allowedContentTypes = allowedFileTypes.compactMap { UTType(filenameExtension: $0) } // Set the allowed content types based on the file extensions

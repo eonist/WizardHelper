@@ -10,7 +10,9 @@ extension UIView {
     * - Parameter responder: The UIResponder to start the search from.
     * - Returns: The first available UIViewController found in the responder chain.
     */
-   internal static func firstAvailableUIViewController(fromResponder responder: UIResponder) -> UIViewController? {
+   internal static func firstAvailableUIViewController(
+      fromResponder responder: UIResponder
+   ) -> UIViewController? {
       // ⚠️️ new
       // The current implementation uses recursion to traverse the responder chain. You can simplify it using Swift's sequence(first:next:) function:
       sequence(first: responder, next: { $0.next }).first(where: { $0 is UIViewController }) as? UIViewController

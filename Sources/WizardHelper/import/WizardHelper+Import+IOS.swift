@@ -45,7 +45,11 @@ extension WizardHelper {
     *   - types: An array of UTType instances that represent the allowed file types.
     *   - complete: A closure that is called when the user has selected a file.
     */
-   public static func promptOpenFile(view: UIView? = nil, types: [UTType] = defaultTypes, complete: @escaping OnOpenComplete) {
+   public static func promptOpenFile(
+      view: UIView? = nil,
+      types: [UTType] = defaultTypes,
+      complete: @escaping OnOpenComplete
+   ) {
       guard let view = view ?? UIViewController.topMostController()?.view else { Swift.print("Err, ⚠️️ unable to get view"); return }
       // Swift.print("promptOpenFile")
       let controller = OpenFileVC(forOpeningContentTypes: types) // Create a new instance of OpenFileVC for opening content types
@@ -78,7 +82,10 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
     *   - urls: An array of `URL` instances that represent the selected documents.
     * - Note: This method is not currently being used, as the `OpenFileVC` class is being used instead of `UIDocumentPickerViewController`.
     */
-   func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+   func documentPicker(
+      _ controller: UIDocumentPickerViewController,
+      didPickDocumentsAt urls: [URL]
+   ) {
       // self.urls = urls // do something with the selected documents
       // Swift.print("OpenFileVC - didPickDocumentsAt")
       // The OpenFileVC class is being used instead of UIDocumentPickerViewController
@@ -92,7 +99,10 @@ private class OpenFileVC: UIDocumentPickerViewController, UIDocumentPickerDelega
     *   - url: The `URL` instance that represents the selected document.
     * - Note: This method is not currently being used, as the `OpenFileVC` class is being used instead of `UIDocumentPickerViewController`.
     */
-   func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+   func documentPicker(
+      _ controller: UIDocumentPickerViewController,
+      didPickDocumentAt url: URL
+   ) {
       // self.urls = [url]  // do something with the selected document
       // Swift.print("OpenFileVC - didPickDocumentAt")
       onComplete(.success([url])) // Call the onComplete closure with the selected URL as a success result

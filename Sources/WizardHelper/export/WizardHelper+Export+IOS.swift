@@ -29,7 +29,11 @@ extension WizardHelper {
     *     // Do additional cleanup, etc.
     * }
     */
-   public static func promptSaveFile(fromURL: URL, view: UIView? = nil, onComplete: (() -> Void)?) {
+   public static func promptSaveFile(
+      fromURL: URL,
+      view: UIView? = nil,
+      onComplete: (() -> Void)?
+   ) {
       // Get the view controller to present the save dialog from
       guard let view = view ?? UIViewController.topMostController()?.view else { Swift.print("Err, ⚠️️ unable to get view"); return }
       // Create the activity view controller with the file URL

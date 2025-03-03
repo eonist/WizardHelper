@@ -58,7 +58,12 @@ extension WizardHelper {
     * - Fixme: ⚠️️ ask copilot to improve this code
     * - Fixme: ⚠️️ use Result?
     */
-   public static func saveFile(fromURL: URL, fileName: String? = nil, onComplete: (() -> Void)?) {
+   public static func saveFile(
+      fromURL: URL,
+      fileName: String? = nil,
+      // - Fixme: ⚠️️ Use typealias?
+      onComplete: (() -> Void)?
+   ) {
       #if os(iOS)
       WizardHelper.promptSaveFile(fromURL: fromURL, view: rootController?.view, onComplete: onComplete)
       #elseif os(macOS)
